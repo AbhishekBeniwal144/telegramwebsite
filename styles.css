@@ -270,15 +270,15 @@ body {
 .carousel {
   position: relative;
   width: 100%;
-  overflow-x: auto; /* Changed to auto for natural scrolling */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .items-container {
   display: flex;
-  flex-wrap: nowrap; /* Ensure items stay in a single row */
+  flex-wrap: nowrap;
   padding: 10px;
   gap: 15px;
-  width: max-content; /* Allow container to expand to full content width */
+  width: 990px; /* 6 boxes * (150px width + 15px gap) = 990px */
 }
 .skill-box {
   flex: 0 0 150px;
@@ -313,10 +313,14 @@ body {
 
 /* Media Queries */
 @media (min-width: 769px) {
+  .carousel {
+    overflow-x: hidden; /* No scrolling on PC/tablet */
+  }
   .items-container {
     justify-content: center;
-    flex-wrap: wrap; /* Wrap on desktop */
-    width: 100%;
+    width: 100%; /* Full width to fit all boxes in one line */
+    max-width: 990px; /* Matches 6 boxes */
+    margin: 0 auto; /* Center the row */
   }
   .skill-box {
     flex: 0 0 150px;
@@ -324,10 +328,10 @@ body {
 }
 @media (max-width: 768px) {
   .carousel {
-    overflow-x: scroll; /* Ensure scroll on mobile */
+    overflow-x: scroll; /* Scroll only on mobile */
   }
   .items-container {
-    flex-wrap: nowrap; /* No wrapping on mobile */
+    width: 990px; /* Fixed width for 6 boxes */
   }
   .skill-box {
     flex: 0 0 150px;
