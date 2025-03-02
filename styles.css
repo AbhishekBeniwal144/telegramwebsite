@@ -269,18 +269,16 @@ body {
 }
 .carousel {
   position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 100%;
-  overflow: hidden;
+  width: 100%;
+  overflow-x: auto; /* Changed to auto for natural scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
-.skills-container, .items-container {
+.items-container {
   display: flex;
-  flex-wrap: nowrap;
-  padding: 10px 40px;
+  flex-wrap: nowrap; /* Ensure items stay in a single row */
+  padding: 10px;
   gap: 15px;
-  justify-content: center;
-  overflow-x: visible;
+  width: max-content; /* Allow container to expand to full content width */
 }
 .skill-box {
   flex: 0 0 150px;
@@ -315,20 +313,21 @@ body {
 
 /* Media Queries */
 @media (min-width: 769px) {
-  .skills-container, .items-container {
+  .items-container {
     justify-content: center;
+    flex-wrap: wrap; /* Wrap on desktop */
+    width: 100%;
   }
   .skill-box {
     flex: 0 0 150px;
   }
 }
 @media (max-width: 768px) {
-  .skills-container {
-    overflow-x: scroll;
+  .carousel {
+    overflow-x: scroll; /* Ensure scroll on mobile */
   }
   .items-container {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap; /* No wrapping on mobile */
   }
   .skill-box {
     flex: 0 0 150px;
