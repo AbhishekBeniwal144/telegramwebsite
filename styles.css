@@ -1,49 +1,465 @@
-// Hamburger Menu Toggle
-function toggleMenu() {
-  const menu = document.querySelector('.menu');
-  menu.classList.toggle('active');
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  overflow-x: hidden;
+  cursor: none;
 }
 
-// Back to Top Function
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+/* Bokeh Cursor */
+.bokeh-cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(128, 0, 128, 0.5), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: bokehPulse 2s infinite;
+}
+@keyframes bokehPulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
 }
 
-// Swipe Functionality for Skills Only (No Infinite Scroll)
-const skillsContainer = document.querySelector('.skills-container');
-if (skillsContainer) {
-  let touchStartX = 0;
-  let touchMoveX = 0;
-
-  skillsContainer.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  });
-
-  skillsContainer.addEventListener('touchmove', e => {
-    touchMoveX = e.touches[0].clientX;
-    const diff = touchStartX - touchMoveX;
-    skillsContainer.scrollLeft += diff;
-    touchStartX = touchMoveX;
-  });
+/* Black Blur Glass Navigation Bar with Underline Effect */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+.navbar .logo {
+  font-size: 1.5em;
+  color: #fff;
+}
+.navbar .menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.navbar .menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  left: 50%;
+  bottom: 5px;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.navbar .menu a:hover::after {
+  width: 50%;
+}
+.navbar .menu a:hover {
+  /* background: rgba(255, 255, 255, 0.2); Removed */
+}
+.navbar .menu a.active::after {
+  width: 50%;
+}
+.hamburger {
+  display: none;
+  font-size: 1.5em;
+  color: #fff;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+  .navbar .menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+  }
+  .navbar .menu.active { display: block; }
+  .navbar .menu a { display: block; padding: 15px; }
+  .navbar .menu a::after { display: none; }
 }
 
-// Bokeh Cursor Movement
-const cursor = document.querySelector('.bokeh-cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.pageX + 'px';
-  cursor.style.top = e.pageY + 'px';
-});
-
-// Scroll Animation
-function handleScrollAnimation() {
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  elements.forEach(element => {
-    const rect = element.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    if (rect.top < windowHeight - 100) {
-      element.classList.add('visible');
-    }
-  });
+/* Breaking News Ticker */
+.ticker {
+  background: #800080;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
 }
-window.addEventListener('scroll', handleScrollAnimation);
-window.addEventListener('load', handleScrollAnimation);
+.ticker span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.ticker marquee {
+  flex-grow: 1;
+}
+
+/* Ad Placeholder */
+.ad-placeholder {
+  background: #ddd;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  margin: 10px 0;
+  font-size: 1em;
+  border: 1px dashed #999;
+}
+
+/* Hero Section with Parallax Background */
+.hero {
+  position: relative;
+  background: #800080;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+  min-height: 400px;
+  overflow: hidden;
+}
+.bokeh-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(128, 0, 128, 0.5), rgba(75, 0, 130, 0.3), transparent);
+  animation: bokehEffect 15s infinite;
+  z-index: 0;
+  background-attachment: fixed;
+}
+.bokeh-animation::before,
+.bokeh-animation::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: bokehMove 8s infinite;
+}
+.bokeh-animation::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 2s;
+}
+.bokeh-animation::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: 4s;
+}
+.bokeh-animation .circle1,
+.bokeh-animation .circle2,
+.bokeh-animation .circle3,
+.bokeh-animation .circle4,
+.bokeh-animation .circle5,
+.bokeh-animation .circle6,
+.bokeh-animation .circle7,
+.bokeh-animation .circle8,
+.bokeh-animation .circle9,
+.bokeh-animation .circle10,
+.bokeh-animation .circle11,
+.bokeh-animation .circle12,
+.bokeh-animation .circle13,
+.bokeh-animation .circle14,
+.bokeh-animation .circle15,
+.bokeh-animation .circle16,
+.bokeh-animation .circle17,
+.bokeh-animation .circle18,
+.bokeh-animation .circle19,
+.bokeh-animation .circle20,
+.bokeh-animation .circle21,
+.bokeh-animation .circle22 {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  animation: bokehMove 10s infinite;
+}
+.bokeh-animation .circle1 { width: 70px; height: 70px; top: 10%; left: 40%; animation-delay: 1s; }
+.bokeh-animation .circle2 { width: 30px; height: 30px; top: 50%; left: 70%; animation-delay: 3s; }
+.bokeh-animation .circle3 { width: 60px; height: 60px; top: 80%; left: 20%; animation-delay: 5s; }
+.bokeh-animation .circle4 { width: 40px; height: 40px; top: 30%; right: 30%; animation-delay: 6s; }
+.bokeh-animation .circle5 { width: 20px; height: 20px; top: 15%; left: 60%; animation-delay: 0.5s; }
+.bokeh-animation .circle6 { width: 80px; height: 80px; top: 70%; right: 10%; animation-delay: 7s; }
+.bokeh-animation .circle7 { width: 45px; height: 45px; top: 40%; left: 25%; animation-delay: 2.5s; }
+.bokeh-animation .circle8 { width: 55px; height: 55px; top: 90%; right: 40%; animation-delay: 8s; }
+.bokeh-animation .circle9 { width: 35px; height: 35px; top: 25%; left: 80%; animation-delay: 4s; }
+.bokeh-animation .circle10 { width: 65px; height: 65px; top: 55%; right: 20%; animation-delay: 9s; }
+.bokeh-animation .circle11 { width: 25px; height: 25px; top: 5%; left: 30%; animation-delay: 1.5s; }
+.bokeh-animation .circle12 { width: 50px; height: 50px; top: 65%; left: 50%; animation-delay: 10s; }
+.bokeh-animation .circle13 { width: 40px; height: 40px; top: 35%; right: 60%; animation-delay: 3.5s; }
+.bokeh-animation .circle14 { width: 60px; height: 60px; top: 85%; left: 15%; animation-delay: 11s; }
+.bokeh-animation .circle15 { width: 30px; height: 30px; top: 45%; right: 70%; animation-delay: 6.5s; }
+.bokeh-animation .circle16 { width: 70px; height: 70px; top: 75%; left: 35%; animation-delay: 12s; }
+.bokeh-animation .circle17 { width: 20px; height: 20px; top: 20%; right: 50%; animation-delay: 2s; }
+.bokeh-animation .circle18 { width: 55px; height: 55px; top: 60%; left: 65%; animation-delay: 13s; }
+.bokeh-animation .circle19 { width: 45px; height: 95px; top: 95%; right: 25%; animation-delay: 7.5s; }
+.bokeh-animation .circle20 { width: 35px; height: 35px; top: 30%; left: 45%; animation-delay: 14s; }
+.bokeh-animation .circle21 { width: 25px; height: 25px; top: 50%; right: 35%; animation-delay: 4.5s; }
+.bokeh-animation .circle22 { width: 60px; height: 60px; top: 10%; left: 75%; animation-delay: 15s; }
+@keyframes bokehEffect {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  50% { transform: scale(1.2) translate(50px, -50px); opacity: 0.5; }
+  100% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+}
+@keyframes bokehMove {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(100px, -100px); }
+  100% { transform: translate(0, 0); }
+}
+.hero h1, .hero p, .hero button {
+  position: relative;
+  z-index: 1;
+}
+.hero h1 { font-size: 2.5em; margin-bottom: 10px; }
+.hero p { font-size: 1.2em; margin-bottom: 20px; }
+.hero .btn1 {
+  background: #ff6200;
+  color: #000;
+  padding: 12px 25px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.hero .btn2 {
+  background: #fff;
+  color: #ff6200;
+  border: 2px solid #ff6200;
+  padding: 12px 25px;
+  margin: 10px;
+  cursor: pointer;
+  animation: borderPulse 2s infinite;
+}
+@keyframes borderPulse {
+  0% { border-color: #ff6200; }
+  50% { border-color: #fff; }
+  100% { border-color: #ff6200; }
+}
+@media (max-width: 768px) {
+  .hero { padding: 40px 15px; }
+  .hero h1 { font-size: 2em; }
+  .hero p { font-size: 1em; }
+}
+
+/* Skills, Bots, Channels, Groups Sections */
+.skills, .section {
+  padding: 20px;
+  background: #fff;
+}
+.skills h2, .section h2 { 
+  text-align: center; 
+  margin-bottom: 20px; 
+  color: #333; 
+}
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+.skills-container, .items-container {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 10px 40px;
+  gap: 15px;
+  justify-content: center;
+  overflow-x: visible;
+}
+.skill-box {
+  flex: 0 0 150px;
+  text-align: center;
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #800080;
+  transition: transform 0.3s;
+}
+.skill-box:hover { transform: scale(1.05); }
+.skill-box img { 
+  width: 100%; 
+  height: 100px;
+  object-fit: contain;
+}
+.skill-box a { 
+  text-decoration: none; 
+  color: #333; 
+  display: block; 
+}
+
+/* Scroll Animation */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Media Queries */
+@media (min-width: 769px) {
+  .skills-container, .items-container {
+    justify-content: center;
+  }
+  .skill-box {
+    flex: 0 0 150px;
+  }
+}
+@media (max-width: 768px) {
+  .skills-container {
+    overflow-x: scroll;
+  }
+  .items-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .skill-box {
+    flex: 0 0 150px;
+  }
+}
+
+/* Contact Form */
+.contact {
+  padding: 20px;
+  background: #fff;
+}
+.contact h2 { text-align: center; margin-bottom: 20px; }
+.contact form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact input, .contact textarea {
+  padding: 10px;
+  border: 1px solid #800080;
+}
+.contact button {
+  background: #800080;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Modern Footer */
+.footer {
+  background: linear-gradient(135deg, #800080, #4b0082);
+  color: #fff;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  animation: footerGlow 15s infinite;
+  z-index: -1;
+}
+@keyframes footerGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand h3 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.footer-brand p {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+.footer-social {
+  display: flex;
+  gap: 15px;
+}
+.social-link {
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.social-link:hover {
+  background: #ff6200;
+  transform: scale(1.1);
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+}
+.footer-links a:hover {
+  color: #ff6200;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2000;
+}
+.back-to-top:hover {
+  background: #ff6200;
+  color: #fff;
+  border-color: #ff6200;
+}
