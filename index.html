@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Blog</title>
-  <link rel="stylesheet" href="./styles.css"> <!-- Explicit root path -->
+  <link rel="stylesheet" href="./styles.css?v=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <!-- Custom Bokeh Cursor -->
   <div class="bokeh-cursor"></div>
 
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">My Blog</div>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -25,19 +23,15 @@
     </div>
   </nav>
 
-  <!-- Ad below Navigation -->
   <div class="ad-placeholder">Advertisement (Navigation)</div>
 
-  <!-- Breaking News Ticker -->
   <div class="ticker">
     <span>Breaking</span>
     <marquee>Latest news updates go here...</marquee>
   </div>
 
-  <!-- Ad below Breaking News -->
   <div class="ad-placeholder">Advertisement (Breaking News)</div>
 
-  <!-- Hero Section with Parallax Background -->
   <section class="hero" id="home">
     <div class="bokeh-animation">
       <span class="circle1"></span>
@@ -69,10 +63,9 @@
     <button class="btn2">Contact Me</button>
   </section>
 
-  <!-- Ad below Hero Section -->
   <div class="ad-placeholder">Advertisement (Hero)</div>
 
-  <!-- Skills Section (6 Boxes) -->
+  <!-- Skills Section (Correct Order: HTML, CSS, JS, React, Tailwind, Bootstrap) -->
   <section class="skills" id="skills">
     <h2 class="animate-on-scroll">My Skills</h2>
     <div class="carousel">
@@ -87,58 +80,59 @@
     </div>
   </section>
 
-  <!-- Ad below Skills -->
   <div class="ad-placeholder">Advertisement (Skills)</div>
 
-  <!-- Bots Section (6 Boxes) -->
+  <!-- Bots Section (Order: Bot 1, 2, 3, 4, 5, 6) -->
   <section class="section" id="bots">
     <h2 class="animate-on-scroll">Bots</h2>
-    <div class="items-container">
-      <div class="skill-box animate-on-scroll"><a href="bot1-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 1"><p>Bot 1: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="bot2-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 2"><p>Bot 2: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="bot3-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 3"><p>Bot 3: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="bot4-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 4"><p>Bot 4: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="bot5-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 5"><p>Bot 5: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="bot6-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 6"><p>Bot 6: Short description</p></a></div>
+    <div class="carousel">
+      <div class="items-container">
+        <div class="skill-box animate-on-scroll"><a href="bot1-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 1"><p>Bot 1: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="bot2-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 2"><p>Bot 2: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="bot3-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 3"><p>Bot 3: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="bot4-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 4"><p>Bot 4: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="bot5-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 5"><p>Bot 5: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="bot6-link"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086939.png" alt="Bot 6"><p>Bot 6: Short description</p></a></div>
+      </div>
     </div>
   </section>
 
-  <!-- Ad below Bots -->
   <div class="ad-placeholder">Advertisement (Bots)</div>
 
-  <!-- Channels Section (6 Boxes) -->
+  <!-- Channels Section (Order: Channel 1, 2, 3, 4, 5, 6) -->
   <section class="section" id="channels">
     <h2 class="animate-on-scroll">Channels</h2>
-    <div class="items-container">
-      <div class="skill-box animate-on-scroll"><a href="channel1-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 1"><p>Channel 1: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="channel2-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 2"><p>Channel 2: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="channel3-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 3"><p>Channel 3: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="channel4-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 4"><p>Channel 4: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="channel5-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 5"><p>Channel 5: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="channel6-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 6"><p>Channel 6: Short description</p></a></div>
+    <div class="carousel">
+      <div class="items-container">
+        <div class="skill-box animate-on-scroll"><a href="channel1-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 1"><p>Channel 1: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="channel2-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 2"><p>Channel 2: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="channel3-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 3"><p>Channel 3: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="channel4-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 4"><p>Channel 4: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="channel5-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 5"><p>Channel 5: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="channel6-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Channel 6"><p>Channel 6: Short description</p></a></div>
+      </div>
     </div>
   </section>
 
-  <!-- Ad below Channels -->
   <div class="ad-placeholder">Advertisement (Channels)</div>
 
-  <!-- Groups Section (6 Boxes) -->
+  <!-- Groups Section (Order: Group 1, 2, 3, 4, 5, 6) -->
   <section class="section" id="groups">
     <h2 class="animate-on-scroll">Groups</h2>
-    <div class="items-container">
-      <div class="skill-box animate-on-scroll"><a href="group1-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 1"><p>Group 1: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="group2-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 2"><p>Group 2: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="group3-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 3"><p>Group 3: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="group4-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 4"><p>Group 4: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="group5-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 5"><p>Group 5: Short description</p></a></div>
-      <div class="skill-box animate-on-scroll"><a href="group6-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 6"><p>Group 6: Short description</p></a></div>
+    <div class="carousel">
+      <div class="items-container">
+        <div class="skill-box animate-on-scroll"><a href="group1-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 1"><p>Group 1: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="group2-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 2"><p>Group 2: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="group3-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 3"><p>Group 3: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="group4-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 4"><p>Group 4: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="group5-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 5"><p>Group 5: Short description</p></a></div>
+        <div class="skill-box animate-on-scroll"><a href="group6-link"><img src="https://cdn-icons-png.flaticon.com/512/681/681494.png" alt="Group 6"><p>Group 6: Short description</p></a></div>
+      </div>
     </div>
   </section>
 
-  <!-- Ad below Groups -->
   <div class="ad-placeholder">Advertisement (Groups)</div>
 
-  <!-- Contact Form -->
   <section class="contact" id="contact">
     <h2>Contact Me</h2>
     <form action="https://formsubmit.co/your-email@gmail.com" method="POST">
@@ -150,7 +144,6 @@
     </form>
   </section>
 
-  <!-- Modern Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
@@ -174,9 +167,8 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
   <button class="back-to-top" onclick="scrollToTop()">⇧</button>
 
-  <script src="./script.js"></script> <!-- Explicit root path -->
+  <script src="./script.js"></script>
 </body>
 </html>
